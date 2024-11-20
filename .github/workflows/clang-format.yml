@@ -19,11 +19,6 @@ jobs:
   check_formatting:
     name: Check Code Formatting
     runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        directory: 
-          - 'src'
-          - 'include'
 
     steps:
       - name: Checkout repository
@@ -36,7 +31,7 @@ jobs:
 
       - name: Run clang-format on ${{ matrix.directory }}
         run: |
-          clang-format ${{ matrix.directory }}/**/*.cpp ${{ matrix.directory }}/**/*.h -i -style=file
+          clang-format src/**/*.cpp src/**/*.h include/**/*.h -i -style=file
 
       - name: Check for unformatted files
         run: |
